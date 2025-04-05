@@ -5,6 +5,8 @@
 #include <string.h>
 #include <getopt.h>
 
+#include "../include/corelib.h"
+
 int main(int argc, char *argv[])
 {
 	int opt;
@@ -30,10 +32,10 @@ int main(int argc, char *argv[])
 			printf("Commit code...\n");
 			break;
 		case STATUS:
-			printf("Status: ...\n");
+			status();
 			break;
 		default:
-			printf("Status:...\n");
+			status();
 			break;
 	}
 
