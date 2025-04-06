@@ -5,7 +5,7 @@
 #include <string.h>
 #include <getopt.h>
 
-#include "../include/corelib.h"
+#include "../include/core.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
 	switch (mode) {
 		case INIT:
-			printf("Initializing...\n");
+			init();
 			break;
 		case COMMIT:
 			printf("Commit code...\n");
