@@ -1,26 +1,30 @@
-exec: clean compile bin/cg src/main.o src/corelib.o src/colorslib.o run
+exec: clean compile bin/chips src/main.o src/core.o src/colorslib.o run
 
 clean:
-	test -e "bin/cg" && rm bin/cg || echo "The binary doesn't exist. Skipping clean..."
+	test -e "bin/chips" && rm bin/chips || echo "The binary doesn't exist. Skipping clean..."
 
 compile:
-	echo "Starting program compilation..."
+	@echo "Starting program compilation..."
 	mkdir -p bin
 
-bin/cg: src/main.o src/corelib.o src/colorsli.o
-	echo "Linking program..."
-	gcc -o bin/cg $^
+bin/chips: src/main.o src/core.o
+	@echo "Linking program..."
+	gcc -o bin/chips $^
 
-src/main.o: src/main.c include/corelib.h include/colorslib.h
-	echo "Compiling main.c"
+src/main.o: src/main.c include/core.h include/colorslib.h
+	@echo "Compiling main.c"
 	gcc -c src/main.c -o src/main.o -I./include -I./src
 
-src/corelib.o: src/core.c include/corelib.h
-	echo "Compiling core.c"
-	gcc -c src/core.c -o src/core.i -I./include -I./src
+src/core.o: src/core.c include/core.h
+	@echo "Compiling core.c"
+	gcc -c src/core.c -o src/core.o -I./include -I./src
+
+src/colorslib.o: include/colorslib.h
+	@echo "Compiling colorslib.h"
+	gcc -c include/colorslib.h -I./include
 
 run:
-	bin/cg
+	bin/chips
 
 all: compile run
 

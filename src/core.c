@@ -1,6 +1,6 @@
-#include "../include/corelib.h"
+#include "../include/core.h"
 
-char **status()
+char* status()
 {
 	return "STATUS...";
 }
